@@ -96,9 +96,9 @@ def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> floa
 def main():
     parser = argparse.ArgumentParser(description="Entrenamiento U-Net 2D para denoising")
     parser.add_argument("--root_dir", type=str, default="LibriSpeech/dev-clean")
-    parser.add_argument("--target_sr", type=int, default=16000)
+    parser.add_argument("--target_sr", type=int, default=48000)
     parser.add_argument("--fixed_length_sec", type=float, default=5.0)
-    parser.add_argument("--snr_db", type=float, default=10.0)
+    parser.add_argument("--snr_db", type=float, default=5.0)
     parser.add_argument("--batch_size", type=int, default=4)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--lr", type=float, default=1e-3)

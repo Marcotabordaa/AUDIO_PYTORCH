@@ -31,7 +31,7 @@ def main():
     parser.add_argument("--checkpoint", type=str, default=os.path.join("checkpoints", "unet2d_best.pt"))
     parser.add_argument("--root_dir", type=str, default="LibriSpeech/dev-clean")
     parser.add_argument("--num_samples", type=int, default=2)
-    parser.add_argument("--snr_db", type=float, default=10.0)
+    parser.add_argument("--snr_db", type=float, default=5.0)
     args = parser.parse_args()
 
     if not os.path.exists(args.checkpoint):
@@ -108,9 +108,9 @@ def main():
             axes[r, 0].set_ylabel("Amplitud")
 
         # Spectrograms (imshow)
-        im0 = axes[0, 1].imshow(log_noisy, origin='lower', aspect='auto')
+        axes[0, 1].imshow(log_noisy, origin='lower', aspect='auto')
         axes[0, 1].set_title("Spec Noisy (log mag)")
-        im1 = axes[1, 1].imshow(log_clean, origin='lower', aspect='auto')
+        axes[1, 1].imshow(log_clean, origin='lower', aspect='auto')
         axes[1, 1].set_title("Spec Clean (log mag)")
         im2 = axes[2, 1].imshow(log_denoised, origin='lower', aspect='auto')
         axes[2, 1].set_title("Spec Denoised (log mag)")

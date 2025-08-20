@@ -107,18 +107,20 @@ class DenoiserUNetWrapper(nn.Module):
             n_fft=self.n_fft,
             hop_length=self.hop_length,
             win_length=self.win_length,
-            window=self.window.to(wave.device),
+            window=self.window.to(device=wave.device, dtype=wave.dtype),
             center=True,
             return_complex=True,
         )
 
     def istft(self, spec: torch.Tensor, length: int) -> torch.Tensor:
-        return torch.istft(
+        # Llamada dinámica para evitar falsos positivos de algunos linters/stubs
+        istft_fn = getattr(torch, "istft")
+        return istft_fn(  # type: ignore
             spec,
             n_fft=self.n_fft,
             hop_length=self.hop_length,
             win_length=self.win_length,
-            window=self.window.to(spec.device),
+            window=self.window.to(device=spec.device, dtype=spec.real.dtype),
             center=True,
             length=length,
         )
