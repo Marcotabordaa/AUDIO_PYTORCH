@@ -41,10 +41,10 @@ python scripts/evaluate.py --test_dir data/test/ --model_path models/best_model.
 ## Arquitectura Técnica
 
 ### Modelo
-- **Entrada**: 
+- **Entrada**:  dataset de pares de audio (clean, noisey)
 - **Arquitectura**: U-Net 2D convolucional
-- **Salida**: 
-- **Función de pérdida**: 
+- **Salida**: pesos en formato .pt que al ser ejecutados desde infer.py generan audio y graficas del proceso
+- **Función de pérdida**: adam
 
 ### Dataset
 - **Fuentes**: LibriSpeech
